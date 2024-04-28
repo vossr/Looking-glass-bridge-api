@@ -1,7 +1,12 @@
 import bridge_api_internal as bridge
 from types import SimpleNamespace
+import atexit
 
 bridge.InitializeApp()
+
+def terminate():
+    bridge.CloseApp()
+atexit.register(terminate)
 
 def get_number_of_devices():
     return bridge.GetNumDevices()
